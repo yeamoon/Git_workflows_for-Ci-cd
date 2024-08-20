@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: Db
+      POSTGRES_USER: pstgres
+      POSTGRES_PASSWORD: Bismillah@123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  web:
+    build: .
+    command: python manage.py migrate
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_NAME: Db
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: Bismillah@123
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  postgres_data:
