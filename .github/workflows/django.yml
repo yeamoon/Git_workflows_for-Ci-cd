@@ -29,16 +29,11 @@ jobs:
       run: |
         python manage.py test
          
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2
-      with:
-          username: 'sultana730'
-          password: 'Bismillah@123'
-      
-    - name: Build and push Docker image
+    - name: build and push docker image
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
-          image: sultana730/notekeeper
-          tags: pr-1-bf28907
-          registry: docker.io
+        image: sultana730/notekeeper
+        registry: docker.io
+        username: 'sultana730'
+        password: 'Bismillah@123'
         
