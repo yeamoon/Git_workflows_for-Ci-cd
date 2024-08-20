@@ -38,6 +38,7 @@ jobs:
     - name: Build and push Docker image
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
-          image: docker.io/sultana730/notekeeper
+          image: sultana730/notekeeper
           tags: pr-1-bf28907
+          registry: docker.io
         
